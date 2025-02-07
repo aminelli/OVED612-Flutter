@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_provider_redux_01/actions/todo_actions.dart';
+
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
+import '../components/drop-down-categories.dart';
 import '../models/app_state.dart';
 import '../models/category.dart';
 import '../models/todo.dart';
 import 'categories_screen.dart';
+
+import '../actions/todo_actions.dart';
 
 class TodosScreen extends StatelessWidget {
   @override
@@ -19,9 +22,9 @@ class TodosScreen extends StatelessWidget {
               icon: Icon(Icons.category),
               onPressed: () {
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context)  => CategoriesScreen())
-                );
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CategoriesScreen()));
               },
             )
           ],
@@ -102,13 +105,37 @@ class TodosScreen extends StatelessWidget {
                     controller: controller,
                     decoration: InputDecoration(labelText: "Todo"),
                   ),
+                  /*
+                  DropdownButtonCategories(
+                    categories: categories,
+                    defaultValue: selectedCategoryId,
+                    onChanged: (value) {
+                      selectedCategoryId = value;
+                    },
+                  ),
+                  
+                  
                   DropdownButton<String>(
                       value: selectedCategoryId,
                       items: categories.map((category) {
                         return DropdownMenuItem<String>(
                             value: category.id, child: Text(category.name));
                       }).toList(),
-                      onChanged: (value) => selectedCategoryId = value)
+                      onChanged: (value) {
+                        selectedCategoryId = value;
+                      }
+                  ),
+                  */
+                   DropdownButtonFormField<String>(
+                      value: selectedCategoryId,
+                      items: categories.map((category) {
+                        return DropdownMenuItem<String>(
+                            value: category.id, child: Text(category.name));
+                      }).toList(),
+                      onChanged: (value) {
+                        selectedCategoryId = value;
+                      }
+                  ),
                 ],
               ),
               actions: [
@@ -152,7 +179,25 @@ class TodosScreen extends StatelessWidget {
                     controller: controller,
                     decoration: InputDecoration(labelText: "Todo"),
                   ),
+                  /*
+                  DropdownButtonCategories(
+                    categories: categories,
+                    defaultValue: selectedCategoryId,
+                    onChanged: (value) {
+                      selectedCategoryId = value;
+                    },
+                  ),
+                  
+                  
                   DropdownButton<String>(
+                      value: selectedCategoryId,
+                      items: categories.map((category) {
+                        return DropdownMenuItem<String>(
+                            value: category.id, child: Text(category.name));
+                      }).toList(),
+                      onChanged: (value) => selectedCategoryId = value)
+                  */
+                  DropdownButtonFormField<String>(
                       value: selectedCategoryId,
                       items: categories.map((category) {
                         return DropdownMenuItem<String>(

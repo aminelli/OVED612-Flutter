@@ -22,4 +22,25 @@ class Todo {
     );
   }
 
+  // Deserialization (tramite factory constructor)
+  factory Todo.fromJson(Map<String, dynamic> json) {
+    return Todo(
+      id: json['id'],
+      title: json['title'],
+      completed: json['completed'],
+      categoryId: json['categoryId']
+    );
+  }
+
+// Serialization JSON
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'completed': completed,
+      'categoryId': categoryId
+    };
+  }
+
+
 }
