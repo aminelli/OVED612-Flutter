@@ -7,10 +7,6 @@
     {
       "id": "2",
       "name": "Personale"
-    },
-    {
-      "id": "6cd9",
-      "name": "Altro"
     }
   ],
   "todos": [
@@ -25,18 +21,6 @@
       "title": "Cibo Gatti",
       "completed": false,
       "categoryId": "2"
-    },
-    {
-      "id": "4b9c",
-      "title": "Passare in farmacia",
-      "completed": false,
-      "categoryId": "2"
-    },
-    {
-      "id": "6be6",
-      "title": "Chiamare Francesco",
-      "completed": false,
-      "categoryId": "1"
     }
   ]
 }
