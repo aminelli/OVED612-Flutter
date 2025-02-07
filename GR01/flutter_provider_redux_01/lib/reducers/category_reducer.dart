@@ -24,6 +24,8 @@ List<Category> _categoryListReducer(List<Category> categories, dynamic action) {
         .map((category) => category.id == action.category.id ? action.category : category)
         .toList();
   
+  } else if (action is SetCategoriesAction) {
+    return action.categories;
   }
 
   return categories;

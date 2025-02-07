@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_provider_redux_01/actions/category_actions.dart';
+import 'package:flutter_provider_redux_01/redux/category_thunk_actions.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
@@ -84,9 +85,10 @@ class CategoriesScreen extends StatelessWidget {
                 child: Text('Aggiungi'),
                 onPressed: () {
                   final newCategory = Category(
-                      id: DateTime.now().millisecondsSinceEpoch.toString(),
+                      id: null,
                       name: controller.text);
-                  store.dispatch(AddCategoryAction(newCategory));
+                  //store.dispatch(AddCategoryAction(newCategory));
+                  store.dispatch(apiAddCategoriesAction(newCategory));
                   Navigator.pop(context);
                 })
           ],
@@ -129,7 +131,8 @@ class CategoriesScreen extends StatelessWidget {
                 child: Text('Conferma'),
                 onPressed: () {
                   final updateCategory = category.copyWith(name: controller.text);
-                  store.dispatch(EditCategoryAction(updateCategory));
+                  //store.dispatch(EditCategoryAction(updateCategory));
+                  store.dispatch(apiUpdateCategoriesAction(updateCategory));
                   Navigator.pop(context);
                 })
           ],
@@ -138,8 +141,8 @@ class CategoriesScreen extends StatelessWidget {
     );
 
       }
-  void _removeCategory(
-      BuildContext context, Store<AppState> store, Category category) {
-    store.dispatch(RemoveCategoryAction(category.id));
+  void _removeCategory(BuildContext context, Store<AppState> store, Category category) {
+    //store.dispatch(RemoveCategoryAction(category.id!));
+    store.dispatch(apiDeleteCategoriesAction(category.id!));
   }
 }

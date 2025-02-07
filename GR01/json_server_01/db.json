@@ -1,10 +1,42 @@
 {
-    "categories": [
-      { "id": "1", "name": "Lavoro"},
-      { "id": "2", "name": "Personale" }
-    ],
-    "todos": [
-      { "id": "1", "title": "Fare la spesa", "completed": false, "categoryId": "2"},
-      { "id": "2", "title": "Cibo Gatti", "completed": false, "categoryId": "2"}
-    ]
-  }
+  "categories": [
+    {
+      "id": "1",
+      "name": "Lavoro"
+    },
+    {
+      "id": "2",
+      "name": "Personale"
+    },
+    {
+      "id": "6cd9",
+      "name": "Altro"
+    }
+  ],
+  "todos": [
+    {
+      "id": "1",
+      "title": "Fare la spesa",
+      "completed": false,
+      "categoryId": "2"
+    },
+    {
+      "id": "2",
+      "title": "Cibo Gatti",
+      "completed": false,
+      "categoryId": "2"
+    },
+    {
+      "id": "4b9c",
+      "title": "Passare in farmacia",
+      "completed": false,
+      "categoryId": "2"
+    },
+    {
+      "id": "6be6",
+      "title": "Chiamare Francesco",
+      "completed": false,
+      "categoryId": "1"
+    }
+  ]
+}

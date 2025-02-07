@@ -3,11 +3,17 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
 import 'models/app_state.dart';
+import 'redux/category_thunk_actions.dart';
+import 'redux/todo_thunk_actions.dart';
 import 'screens/todos_screen.dart';
 import 'store/store.dart';
 
 void main() {
   final store = createStore();
+
+  store.dispatch(apiFetchTodosAction());
+  store.dispatch(apiFetchCategoriesAction());
+
   runApp(MyApp(store: store));
 }
 

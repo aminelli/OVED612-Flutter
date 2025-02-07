@@ -1,3 +1,4 @@
+import 'package:flutter_provider_redux_01/actions/todo_actions.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_thunk/redux_thunk.dart';
 
@@ -12,10 +13,18 @@ AppState rootReducer(AppState state, dynamic action) {
 }
 
 Store<AppState> createStore() {
-  return Store<AppState>(
-    rootReducer,
-    initialState: AppState.initialState(),
-    middleware: [thunkMiddleware]
-  );
+  return Store<AppState>(rootReducer,
+      initialState: AppState.initialState(), 
+      //middleware: [thunkMiddleware, exampleMiddleware],
+      middleware: [thunkMiddleware],
+      );
 }
 
+void exampleMiddleware(Store<AppState> store, action, NextDispatcher next) {
+  if (action is AddTodoAction) {
+
+    //store.dispatch(EditTodoAction(action.todo));
+  }
+
+  next(action);
+}

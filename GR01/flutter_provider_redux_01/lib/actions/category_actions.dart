@@ -17,3 +17,9 @@ class EditCategoryAction {
 
   EditCategoryAction(this.category);
 }
+
+class SetCategoriesAction {
+  final List<Category> categories;
+
+  SetCategoriesAction(this.categories);
+}

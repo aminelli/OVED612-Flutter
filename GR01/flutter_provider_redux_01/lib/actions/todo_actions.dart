@@ -20,8 +20,16 @@ class EditTodoAction {
   EditTodoAction(this.todo);
 }
 
+class SetTodosAction {
+  final List<Todo> todos;
+
+  SetTodosAction(this.todos);
+}
+
+/*
 class ToggleTodoAction {
   final Todo todo;
 
   ToggleTodoAction(this.todo);
 }
+*/

@@ -14,7 +14,9 @@ class TodoApiService {
 
     if (response.statusCode == 200) {
       List<dynamic> body = jsonDecode(response.body);
-      return body.map((dynamic item) => Todo.fromJson(item)).toList();
+      List<Todo> list =
+          body.map((dynamic item) => Todo.fromJson(item)).toList();
+      return list;
     } else {
       throw Exception('Failed to load todos');
     }
@@ -62,7 +64,4 @@ class TodoApiService {
       throw Exception('Failed to load todos');
     }
   }
-
-
-  
 }

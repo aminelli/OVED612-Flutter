@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_provider_redux_01/redux/todo_thunk_actions.dart';
 
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
@@ -126,7 +127,7 @@ class TodosScreen extends StatelessWidget {
                       }
                   ),
                   */
-                   DropdownButtonFormField<String>(
+                  DropdownButtonFormField<String>(
                       value: selectedCategoryId,
                       items: categories.map((category) {
                         return DropdownMenuItem<String>(
@@ -134,8 +135,7 @@ class TodosScreen extends StatelessWidget {
                       }).toList(),
                       onChanged: (value) {
                         selectedCategoryId = value;
-                      }
-                  ),
+                      }),
                 ],
               ),
               actions: [
@@ -147,12 +147,13 @@ class TodosScreen extends StatelessWidget {
                   child: Text('Salva'),
                   onPressed: () {
                     final newTodo = Todo(
-                      id: DateTime.now().millisecondsSinceEpoch.toString(),
+                      id: null,
                       title: controller.text,
                       categoryId: selectedCategoryId!,
                       completed: false,
                     );
-                    store.dispatch(AddTodoAction(newTodo));
+                    //store.dispatch(AddTodoAction(newTodo));
+                    store.dispatch(apiAddTodosAction(newTodo));
                     Navigator.pop(context);
                   },
                 )
@@ -218,7 +219,8 @@ class TodosScreen extends StatelessWidget {
                       title: controller.text,
                       categoryId: selectedCategoryId!,
                     );
-                    store.dispatch(EditTodoAction(updateTodo));
+                    //store.dispatch(EditTodoAction(updateTodo));
+                    store.dispatch(apiUpdateTodosAction(updateTodo));
                     Navigator.pop(context);
                   },
                 )
@@ -227,10 +229,15 @@ class TodosScreen extends StatelessWidget {
   }
 
   void _removeTodo(BuildContext context, Store<AppState> store, Todo todo) {
-    store.dispatch(RemoveTodoAction(todo.id));
+    //store.dispatch(RemoveTodoAction(todo.id!));
+    store.dispatch(apiDeleteTodosAction(todo.id!));
   }
 
   void _toggleTodo(BuildContext context, Store<AppState> store, Todo todo) {
-    store.dispatch(ToggleTodoAction(todo));
+    final updateTodo = todo.copyWith(
+                      completed: !todo.completed,
+                    );
+    //store.dispatch(ToggleTodoAction(todo));
+    store.dispatch(apiUpdateTodosAction(updateTodo));
   }
 }

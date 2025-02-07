@@ -1,6 +1,6 @@
 // Model per la gestione delle categorie
 class Category {
-  final String id;
+  final String? id;
   final String name;
 
   Category({
@@ -26,6 +26,13 @@ class Category {
   }
 
   Map<String, dynamic> toJson() {
+
+    if (id == null) {
+      return {
+        'name': name,
+      };
+    }
+
     return {
       'id': id,
       'name': name,

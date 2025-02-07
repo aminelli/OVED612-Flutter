@@ -8,14 +8,15 @@ class CategoryApiService {
 
   CategoryApiService({this.baseUrl = "http://localhost:3000"});
 
-
- Future<List<Category>> fetchCategorys() async {
-    final response = await http.get(Uri.parse('${baseUrl}/categories'),
+  Future<List<Category>> fetchCategories() async {
+    final response = await http.get(Uri.parse('$baseUrl/categories'),
         headers: {'Content-Type': 'application/json'});
 
     if (response.statusCode == 200) {
       List<dynamic> body = jsonDecode(response.body);
-      return body.map((dynamic item) => Category.fromJson(item)).toList();
+      List<Category> list =
+          body.map((dynamic item) => Category.fromJson(item)).toList();
+      return list;
     } else {
       throw Exception('Failed to load categories');
     }
@@ -63,7 +64,4 @@ class CategoryApiService {
       throw Exception('Failed to load categories');
     }
   }
-
-
-  
 }

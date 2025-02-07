@@ -1,7 +1,7 @@
 
 // Model per gestione todo
 class Todo {
-  final String id;
+  final String? id;
   final String title;
   final bool completed;
   final String categoryId;
@@ -34,6 +34,15 @@ class Todo {
 
 // Serialization JSON
   Map<String, dynamic> toJson() {
+
+    if (id == null) {
+      return {
+        'title': title,
+        'completed': completed,
+        'categoryId': categoryId
+      };
+    } 
+    
     return {
       'id': id,
       'title': title,
