@@ -1,0 +1,1 @@
+enum FormViewState { edit, add }
