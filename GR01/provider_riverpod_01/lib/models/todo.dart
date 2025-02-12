@@ -27,9 +27,6 @@ class Todo {
 
   // Deserializzazione Json
   Map<String, dynamic> toJson() {
-    
-    
-    
     return {
       'id': id,
       'title': title,

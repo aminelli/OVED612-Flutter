@@ -15,13 +15,17 @@ class TodoListNotifier extends StateNotifier<List<Todo>> {
 
   void updateTodo(Todo updateTodo) {
     state = state.map((todo) {
+      /*
       if (todo.id == updateTodo.id) {
         return updateTodo;
       }
       return todo;
+      */ 
+      return todo.id == updateTodo.id ? updateTodo : todo;
     }).toList();
   }
 
+  /*
   void toggleTodo(String id) {
     state = state.map((todo) {
       if (todo.id == id) {
@@ -29,6 +33,11 @@ class TodoListNotifier extends StateNotifier<List<Todo>> {
       }
       return todo;
     }).toList();
+  }
+  */
+
+  void toggleTodo(Todo todo) {
+    updateTodo(todo.copyWith(completed: !todo.completed));
   }
 
   bool isCategoryInUse(String categoryId) {

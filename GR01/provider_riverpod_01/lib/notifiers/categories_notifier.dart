@@ -20,10 +20,13 @@ class CategoryListNotifier extends StateNotifier<List<Category>> {
 
   void updateCategory(Category updateCategory) {
     state = state.map((category) {
+      /*
       if (category.id == updateCategory.id) {
         return updateCategory.copyWith();
       }
       return category;
+      */
+      return category.id == updateCategory.id ? updateCategory : category;
     }).toList();
   }
 

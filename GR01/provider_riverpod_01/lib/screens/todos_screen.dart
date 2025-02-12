@@ -62,7 +62,7 @@ class TodosScreen extends ConsumerWidget {
                   _showDialog(context, ref, FormViewState.edit, todo);
                 },
                 onToggle: () =>
-                    ref.read(todoListProvider.notifier).toggleTodo(todo.id),
+                    ref.read(todoListProvider.notifier).toggleTodo(todo),
               );
             }));
   }
