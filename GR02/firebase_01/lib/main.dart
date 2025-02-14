@@ -1,7 +1,18 @@
+import 'package:firebase_01/app_state.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'routing/routing.dart';
 
 void main() {
-  runApp(const App());
+  WidgetsFlutterBinding.ensureInitialized();
+
+  runApp(
+      ChangeNotifierProvider(
+        create: (contex) => ApplicationState(),
+        builder: ((context, child) => const App()),
+      ),
+  );
 }
 
 class App extends StatelessWidget {
@@ -10,10 +21,10 @@ class App extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Evento San Valentino',
       theme: ThemeData.dark(),
-      home: null,
+      routerConfig: appRouter,
     );
   }
 }
