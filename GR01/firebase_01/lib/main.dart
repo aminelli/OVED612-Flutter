@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'app_state.dart';
 
 void main() {
 
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(const App());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ApplicationState(),
+      builder: ((context, child) => const App())
+    )
+  );
 }
 
 class App extends StatelessWidget {
