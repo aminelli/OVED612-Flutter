@@ -1,5 +1,6 @@
 import 'package:firebase_01/app_state.dart';
 import 'package:firebase_01/widgets/authentication.dart';
+import 'package:firebase_01/widgets/yes_no_buttons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -35,8 +36,31 @@ class HomePage extends StatelessWidget {
       );
 
   Consumer<ApplicationState> _getEventActions() => Consumer<ApplicationState>(
-    builder:(context, appState, _) => Paragraph(appState.callToAction),
-  );
+        builder: (context, appState, _) => Paragraph(appState.callToAction),
+      );
+
+  Paragraph _getAttendees(attendees) => switch (attendees) {
+        1 => Paragraph('1 persona partecipa'),
+        >= 2 => Paragraph('$attendees persone partecipano'),
+        _ => Paragraph('Nessuna ha ancora confermato'),
+      };
+
+  // Paragraph('$attendees persone');
+
+  List<Widget> _getLoggedInMessages(ApplicationState appState) => [
+    YesNoButtons(
+      state: appState.attending, 
+      onSelection: (attending) => appState.attending = attending,
+    ),
+    const Header('Messaggi'),
+    appState.
+  ];
+
+  Consumer<ApplicationState> _getContent() => Consumer<ApplicationState>(
+      builder: (context, appState, _) => Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [_getAttendees(appState.attendees)],
+          ));
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +75,8 @@ class HomePage extends StatelessWidget {
           _getAuth(),
           _getDivider(),
           const Header("Cosa faremo ? "),
-          _getEventActions()
+          _getEventActions(),
+          _getContent()
         ],
       ),
     );
