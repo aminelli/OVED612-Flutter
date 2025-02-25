@@ -4,11 +4,9 @@ import 'package:go_router/go_router.dart';
 
 
 
-typedef ForgotPasswordCallback = void Function(
-    BuildContext context, String? email);
+typedef ForgotPasswordCallback = void Function(BuildContext context, String? email);
 
-typedef AuthStateChangeCallback<T> = void Function(
-    BuildContext context, T state);
+typedef AuthStateChangeCallback<T> = void Function(BuildContext context, T state);
 
 ForgotPasswordCallback getForgotPasswordCallback(
     BuildContext context, String? email) {
@@ -23,6 +21,7 @@ ForgotPasswordCallback getForgotPasswordCallback(
 
 AuthStateChangeCallback<T> getAuthStateChangeCallback<T>(
     BuildContext context, T state) {
+ 
   return (context, state) {
     final user = switch (state) {
       SignedIn state => state.user,

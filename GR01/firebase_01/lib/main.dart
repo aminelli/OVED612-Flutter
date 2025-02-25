@@ -1,3 +1,4 @@
+import 'package:firebase_01/routing/routing.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -21,7 +22,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Firebase: San Valentino',
       theme: ThemeData(
         buttonTheme: Theme.of(context).buttonTheme.copyWith(highlightColor: Colors.deepPurple),
@@ -38,7 +39,7 @@ class App extends StatelessWidget {
         useMaterial3: true,
       ),
       */
-      home: null,
+      routerConfig: appRouter,
     );
   }
 }
