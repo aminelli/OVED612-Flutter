@@ -21,6 +21,7 @@ ForgotPasswordCallback getForgotPasswordCallback(
   };
 }
 
+
 AuthStateChangeCallback<T> getAuthStateChangeCallback<T>(
     BuildContext context, T state) {
   return (context, state) {

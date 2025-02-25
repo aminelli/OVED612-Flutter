@@ -3,7 +3,6 @@ import 'package:firebase_01/widgets/authentication.dart';
 import 'package:firebase_01/widgets/guest_book_manager.dart';
 import 'package:firebase_01/widgets/yes_no_buttons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
