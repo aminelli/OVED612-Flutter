@@ -1,5 +1,6 @@
 import 'package:firebase_01/app_state.dart';
 import 'package:firebase_01/widgets/authentication.dart';
+import 'package:firebase_01/widgets/guest_book_manager.dart';
 import 'package:firebase_01/widgets/yes_no_buttons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -53,13 +54,19 @@ class HomePage extends StatelessWidget {
       onSelection: (attending) => appState.attending = attending,
     ),
     const Header('Messaggi'),
-    appState.
+    GuestBookManager(
+      messages: appState.guestBookMessages,
+      addMessage: (message) => appState.addMessageToGuestBook(message),
+    )
   ];
 
   Consumer<ApplicationState> _getContent() => Consumer<ApplicationState>(
       builder: (context, appState, _) => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [_getAttendees(appState.attendees)],
+            children: [
+              _getAttendees(appState.attendees),
+              if (appState.loggedIn) ..._getLoggedInMessages(appState)
+            ],
           ));
 
   @override
