@@ -1,0 +1,32 @@
+name: camera_01
+description: "A new Flutter project."
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  camera: ^0.11.1
+  path_provider: ^2.1.5
+  video_player: ^2.9.3
+
+dev_dependencies:
+  flutter_driver:
+    sdk: flutter
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+  leak_tracker_flutter_testing: any
+
+  flutter_lints: ^5.0.0
+  build_runner: ^2.4.14
+
+flutter:
+  uses-material-design: true
+
