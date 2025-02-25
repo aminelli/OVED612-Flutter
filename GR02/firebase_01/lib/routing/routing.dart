@@ -24,7 +24,7 @@ GoRoute profileRoute = GoRoute(
                   child: OutlinedButton(
                     onPressed: () {
                       appState.refreshLoggedInUser();
-                    }, 
+                    },
                     child: const Text("Refresh stato utente"),
                   ),
                 )
@@ -48,10 +48,45 @@ GoRoute signInRoute = GoRoute(
     name: 'signIn',
     path: 'sign-in',
     builder: (context, state) {
-      return SignInScreen(actions: [
-        ForgotPasswordAction((getForgotPasswordCallback)),
-        AuthStateChangeAction((getAuthStateChangeCallback))
-      ]);
+      return SignInScreen(
+          //providers: const [],
+          actions: [
+            ForgotPasswordAction(((context, email) {
+              final uri = Uri(
+                path: '/sign-in/forgot-password',
+                queryParameters: <String, String?>{'email': email},
+              );
+              context.push(uri.toString());
+            })),
+            AuthStateChangeAction(((context, state) {
+              getAuthStateChangeCallback2(context, state);
+            }))
+            /* AuthStateChangeAction(((context, state) {
+              final user = switch (state) {
+                SignedIn state => state.user,
+                UserCreated state => state.credential.user,
+                _ => null,
+              };
+
+              if (user == null) {
+                return;
+              }
+
+              if (state is UserCreated) {
+                user.updateDisplayName(user.email!.split('@')[0]);
+              }
+
+              if (!user.emailVerified) {
+                user.sendEmailVerification();
+                const snackBar = SnackBar(
+                  content: Text(
+                      'Please check your email to verify your email address'),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              }
+              context.pushReplacement('/');
+            })) */
+          ]);
     },
     routes: [forgotPasswordRoute]);
 
@@ -59,9 +94,7 @@ GoRoute homeRoute = GoRoute(
     name: 'home',
     path: '/',
     builder: (context, state) => const HomePage(),
-    routes: [
-      signInRoute,
-      profileRoute]);
+    routes: [signInRoute, profileRoute]);
 
 final appRouter = GoRouter(
   routes: [
